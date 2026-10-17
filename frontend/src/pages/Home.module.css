@@ -1,0 +1,391 @@
+/* ===== HERO ===== */
+.main {
+  min-height: 100vh;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.heroImg {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.heroGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0.6) 60%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.heroEyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #FFD700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.heroEyebrow::before {
+  content: '';
+  width: 40px;
+  height: 2px;
+  background: #FFD700;
+  display: inline-block;
+}
+
+.heroTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 14vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: 0.05em;
+  color: white;
+}
+
+.heroTitleGold {
+  color: #FFD700;
+  -webkit-text-stroke: 2px #FFD700;
+}
+
+.heroSub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-top: 0.5rem;
+}
+
+.heroCtas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.scrollIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+}
+
+.scrollLine {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, #FFD700, transparent);
+}
+
+.scrollIndicator span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: rgba(255, 215, 0, 0.6);
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+}
+
+.heroBottomLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FFD700 30%, #CC0000 70%, transparent);
+  z-index: 3;
+}
+
+/* ===== MARQUEE ===== */
+.marqueeWrapper {
+  background: #111;
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+  overflow: hidden;
+  padding: 0.85rem 0;
+}
+
+.marquee {
+  display: flex;
+  gap: 0;
+  animation: marqueeScroll 25s linear infinite;
+  width: max-content;
+}
+
+.marqueeText {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 215, 0, 0.7);
+  white-space: nowrap;
+  padding: 0 1rem;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== FEATURES ===== */
+.features {
+  padding: 5rem 0;
+  background: #080808;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.featureCard {
+  padding: 2rem;
+  background: #111;
+  border: 1px solid rgba(255, 215, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover {
+  border-color: rgba(255, 215, 0, 0.25);
+  transform: translateY(-4px);
+}
+
+.featureIcon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.featureTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFD700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.featureDesc {
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+  padding: 6rem 0;
+}
+
+.sectionHeader {
+  margin-bottom: 3rem;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.skeleton {
+  aspect-ratio: 3/4;
+  background: linear-gradient(
+    90deg,
+    #111 0%,
+    #1a1a1a 50%,
+    #111 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.viewAll {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== BANNER ===== */
+.banner {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bannerBg {
+  position: absolute;
+  inset: 0;
+}
+
+.bannerBg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+.bannerContent {
+  position: relative;
+  z-index: 2;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.bannerTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: 0.05em;
+  color: white;
+  margin: 1rem 0 1.5rem;
+}
+
+.bannerTitle span {
+  color: #FFD700;
+}
+
+.bannerSub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+  max-width: 380px;
+  margin-bottom: 2rem;
+}
+
+/* ===== INSTAGRAM ===== */
+.instagram {
+  padding: 6rem 0;
+  background: #050505;
+}
+
+.instaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 3rem;
+}
+
+.instaItem {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  display: block;
+}
+
+.instaItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.instaItem:hover img {
+  transform: scale(1.08);
+}
+
+.instaOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+}
+
+.instaItem:hover .instaOverlay {
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .productsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+  .heroCtas {
+    flex-direction: column;
+  }
+  .productsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+  .instaGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
