@@ -38,13 +38,16 @@ export default function Home() {
           getProducts({ new_arrival: true }),
           getInstagramFeed(9),
         ])
-        if (prodRes.status === 'fulfilled') {
-          setProducts(prodRes.value.data.results || prodRes.value.data)
+        if (prodRes.status === 'fulfilled' && prodRes.value?.data) {
+          const raw = prodRes.value.data.results || prodRes.value.data
+          setProducts(Array.isArray(raw) && raw.length > 0 ? raw : DEMO_PRODUCTS)
         } else {
           setProducts(DEMO_PRODUCTS)
         }
-        if (instaRes.status === 'fulfilled') {
-          setInstaPosts(instaRes.value.data.posts || [])
+        if (instaRes.status === 'fulfilled' && Array.isArray(instaRes.value?.data?.posts)) {
+          setInstaPosts(instaRes.value.data.posts)
+        } else {
+          setInstaPosts([])
         }
       } catch {
         setProducts(DEMO_PRODUCTS)
@@ -55,7 +58,7 @@ export default function Home() {
     load()
   }, [])
 
-  const displayProducts = products.length > 0 ? products : DEMO_PRODUCTS
+  const displayProducts = Array.isArray(products) && products.length > 0 ? products : DEMO_PRODUCTS
 
   return (
     <main className={styles.main}>
@@ -233,7 +236,7 @@ export default function Home() {
           </motion.div>
 
           <div className={styles.instaGrid}>
-            {(instaPosts.length > 0 ? instaPosts : DEMO_PRODUCTS.slice(0, 9)).map((post, i) => (
+            {(Array.isArray(instaPosts) && instaPosts.length > 0 ? instaPosts : DEMO_PRODUCTS.slice(0, 8)).map((post, i) => (
               <motion.a
                 key={post.id || i}
                 href={post.permalink || 'https://instagram.com/eonvra'}

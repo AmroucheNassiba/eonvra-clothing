@@ -50,13 +50,15 @@ export default function Shop() {
           }),
           getCategories(),
         ])
-        if (prodRes.status === 'fulfilled') {
-          setProducts(prodRes.value.data.results || prodRes.value.data)
+        if (prodRes.status === 'fulfilled' && prodRes.value?.data) {
+          const raw = prodRes.value.data.results || prodRes.value.data
+          setProducts(Array.isArray(raw) && raw.length > 0 ? raw : DEMO_PRODUCTS)
         } else {
           setProducts(DEMO_PRODUCTS)
         }
-        if (catRes.status === 'fulfilled') {
-          setCategories(catRes.value.data.results || catRes.value.data)
+        if (catRes.status === 'fulfilled' && catRes.value?.data) {
+          const rawCats = catRes.value.data.results || catRes.value.data
+          setCategories(Array.isArray(rawCats) ? rawCats : [])
         }
       } catch {
         setProducts(DEMO_PRODUCTS)
@@ -67,7 +69,8 @@ export default function Shop() {
     load()
   }, [activeCategory, search])
 
-  const sortedProducts = [...(products.length > 0 ? products : DEMO_PRODUCTS)].sort((a, b) => {
+  const safeProducts = Array.isArray(products) && products.length > 0 ? products : DEMO_PRODUCTS
+  const sortedProducts = [...safeProducts].sort((a, b) => {
     if (sort === 'price_asc') return parseFloat(a.current_price) - parseFloat(b.current_price)
     if (sort === 'price_desc') return parseFloat(b.current_price) - parseFloat(a.current_price)
     return 0
@@ -79,7 +82,7 @@ export default function Shop() {
     { id: 3, name: 'Accessoires', slug: 'accessories' },
   ]
 
-  const displayCategories = categories.length > 0 ? categories : demoCategories
+  const displayCategories = Array.isArray(categories) && categories.length > 0 ? categories : demoCategories
 
   return (
     <div className={styles.page}>
